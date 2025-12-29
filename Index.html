@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Malkinn💋❤️</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom, #ffb6d5, #2c2c2c);
+        color: white;
+        text-align: center;
+        overflow: hidden;
+    }
+    .container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px;
+    }
+    .active {
+        display: flex;
+    }
+    img {
+        max-width: 80%;
+        max-height: 40vh;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+    button {
+        background-color: #ff4f9a;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 25px;
+        cursor: pointer;
+        margin: 5px;
+    }
+    button:hover {
+        background-color: #ff1f7a;
+    }
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Screen 1 -->
+<div class="container active" id="screen1">
+    <h2>🌸💌Welcome my cutest , angriest and nakhre karni wali mata ji 💓 🌷✨🌙</h2>
+    <p>Ab yha dabaiye aur bhi bht kuch kehna hai  🫶💫</p>
+    <button onclick="nextScreen(1)">Next ➡</button>
+</div>
+<!-- Screen 2 -->
+<div class="container" id="screen2">
+    <p>🐥💭 I know mei bhul gya tha I'm really sorry socha tha ye website bhi phle hi bana lunga but ye bhi bhul gya meko laga tha ajj 24 tarike hai 😭
+<p>So ab....... maan jao na plssss </p>
+<p>ab maan gyi ho toh yess bhi daba dijiye ...</p>
+    <button onclick="nextScreen(2)">Yes 💖</button>
+</div>
+<!-- Slides -->
+<div class="container" id="slides">
+    <img id="slideImage" src="">
+    <p id="slideText"></p>
+    <div class="nav-buttons">
+        <button onclick="prevSlide()">⬅ Previous</button>
+        <button onclick="nextSlide()">Next ➡</button>
+    </div>
+</div>
+
+<!-- End Screen -->
+<div class="container" id="endScreen">
+    <h2>💌 The End 💌</h2>
+    <p>Agar vha hota toh kuch deta ya banata pr abhi toh....... Kher next year pakka kuch and agli baar 10 din phle se tiyari chalu kar dunga I promise  💖🌸✨</p>
+    <p>And I lovee youu more than anythinggg 💗😌 ab Tata and sorryy again...... 😓👉👈 </p>
+</div>
+
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+<script>
+const slidesData = [
+    { text: "So ab....... Aap maan hi gyi ho toh ......... Happy Birthday Ms.🌹💐 👉🏼👈🏼 And again sollyyyy " },
+
+];
+
+let currentSlide = 0;
+
+function playClick() {
+    document.getElementById("clickSound").play();
+}
+
+function nextScreen(screen) {
+    document.getElementById(`screen${screen}`).classList.remove("active");
+    if (screen === 2) {
+        document.getElementById("slides").classList.add("active");
+        showSlide(currentSlide);
+    } else {
+        document.getElementById(`screen${screen+1}`).classList.add("active");
+    }
+    playClick();
+}
+
+function showSlide(index) {
+    document.getElementById("slideImage").src = slidesData[index].img;
+    document.getElementById("slideText").innerHTML = slidesData[index].text;
+}
+
+function nextSlide() {
+    playClick();
+    currentSlide++;
+    if (currentSlide >= slidesData.length) {
+        document.getElementById("slides").classList.remove("active");
+        document.getElementById("endScreen").classList.add("active");
+    } else {
+        showSlide(currentSlide);
+    }
+}
+
+function prevSlide() {
+    playClick();
+    currentSlide--;
+    if (currentSlide < 0) {
+        currentSlide = 0;
+    }
+    showSlide(currentSlide);
+}
+</script>
+
+</body>
+</html>
